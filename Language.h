@@ -9,7 +9,7 @@ namespace Skobina
 {
 	struct Language
 	{
-		enum lang
+		enum lang //перечисление для создания наследования
 		{
 			PROC,
 			OOP

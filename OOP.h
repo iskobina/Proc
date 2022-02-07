@@ -10,7 +10,7 @@ namespace Skobina
 {
 	struct Object_oriented
 	{
-		enum lang
+		enum lang //перечисление для создания наследования
 		{
 			PROC,
 			OOP

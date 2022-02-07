@@ -1,6 +1,6 @@
 #include "Language.h"
 
-Skobina::Language* Skobina::Language_Input(ifstream& fin)
+Skobina::Language* Skobina::Language_Input(ifstream& fin) //Language* Language_Input(ifstream& fin)
 {
 	Language* language = new Language;
 	Proc* proc;
@@ -13,8 +13,8 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin)
 	case 1:
 		proc = new Proc;
 		language->key = Language::lang::PROC;
-		proc = (Proc*)language;
-		language = (Language*)Proc_Input(*proc, fin);
+		proc = (Proc*)language; //все схожие переменные у proc как у lang
+		language = (Language*)Proc_Input(*proc, fin); //вызов функции для дозаполнения данных 
 		return language;
 	case 2:
 		oop = new Object_oriented;

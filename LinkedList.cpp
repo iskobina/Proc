@@ -49,14 +49,14 @@ void Skobina::LinkedList_Input(LinkedList& obj, ifstream& fin)
 
 void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 {
-	Node* current = obj.First;
+	Node* Temp = obj.First;
 	fout << "Container contains " << obj.SizeList << " elements." << endl;
 
 	for (size_t i = 0; i < obj.SizeList; i++)
 	{
 		fout << i + 1 << ": ";
-		Language_Output(current->language, fout);
-		current = current->Next;
+		Language_Output(Temp->language, fout);
+		Temp = Temp->Next;
 	}
 	fout << endl;
 }

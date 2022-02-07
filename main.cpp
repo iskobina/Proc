@@ -18,14 +18,14 @@ int main(int argc, char* argv[])
 
 	cout << "Start" << endl;
 	LinkedList list;
-	Init(list);
-	LinkedList_Input(list, fin);
+	Init(list); //конструктор списка
+	LinkedList_Input(list, fin); //заполнение списка
 	fout << "Filled container." << endl;
-	LinkedList_Output(list, fout);
+	LinkedList_Output(list, fout); //вывели содержимое контейнера
 
-	Clear(list);
+	Clear(list); //деструктор списка
 	fout << "Empty container." << endl;
-	LinkedList_Output(list, fout);
+	LinkedList_Output(list, fout); //вывели, что контейнер пустой
 	cout << "Stop" << endl;
 	return 0;
 }
