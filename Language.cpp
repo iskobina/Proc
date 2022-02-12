@@ -1,4 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Language.h"
+#include <ctime>
 
 Skobina::Language* Skobina::Language_Input(ifstream& fin) //Language* Language_Input(ifstream& fin)
 {
@@ -42,4 +44,11 @@ void Skobina::Language_Output(Language* obj, ofstream& fout)
 		return;
 	}
 	fout << "Year of development = " << obj->year_of_development << endl;
+}
+
+int Skobina::Past_Years(Language* obj)
+{
+	time_t now = time(NULL);
+	tm* localtm = localtime(&now);
+	return 1900 + localtm->tm_year - obj->year_of_development;
 }

@@ -56,6 +56,8 @@ void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 	{
 		fout << i + 1 << ": ";
 		Language_Output(Temp->language, fout);
+		fout << "The number of years that have passed since the year the language was created = "
+			<< Past_Years(Temp->language) << endl;
 		Temp = Temp->Next;
 	}
 	fout << endl;
