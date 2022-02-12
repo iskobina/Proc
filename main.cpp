@@ -23,6 +23,8 @@ int main(int argc, char* argv[])
 	fout << "Filled container." << endl;
 	LinkedList_Output(list, fout); //вывели содержимое контейнера
 
+	Only_Procedural(list, fout);
+
 	Clear(list); //деструктор списка
 	fout << "Empty container." << endl;
 	LinkedList_Output(list, fout); //вывели, что контейнер пустой

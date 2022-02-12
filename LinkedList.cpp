@@ -60,3 +60,25 @@ void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 	}
 	fout << endl;
 }
+
+void Skobina::Only_Procedural(LinkedList& obj, ofstream& fout)
+{
+	Node* current = obj.First;
+	fout << "Only Procedural languages." << endl;
+
+	for (size_t i = 0; i < obj.SizeList; i++)
+	{
+		fout << i + 1 << ": ";
+		if (current->language->key == Language::lang::PROC)
+		{
+			Language_Output(current->language, fout);
+		}
+		else
+		{
+			fout << endl;
+		}
+		current = current->Next;
+	}
+
+	fout << endl;
+}

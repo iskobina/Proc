@@ -25,6 +25,8 @@ namespace Skobina
 
 	void LinkedList_Input(LinkedList& obj, ifstream& fin);
 	void LinkedList_Output(LinkedList& obj, ofstream& fout);
+
+	void Only_Procedural(LinkedList& obj, ofstream& fout);
 }
 
 #endif
