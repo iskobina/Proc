@@ -1,11 +1,11 @@
 Filled container.
 Container contains 6 elements.
-1: It is Object-oriented programming language: Inheritance is single, Year of development = 1998
-2: It is Procedural programming language: Abstract data types is missing, Year of development = 1990
-3: It is Procedural programming language: Abstract data types is present, Year of development = 1979
-4: It is Object-oriented programming language: Inheritance is interface, Year of development = 1989
-5: It is Object-oriented programming language: Inheritance is single, Year of development = 2000
-6: It is Object-oriented programming language: Inheritance is multiple, Year of development = 2009
+1: It is Object-oriented programming language: Inheritance is single, Year of development = 1998, The number of references of this language on the Internet = 123
+2: It is Procedural programming language: Abstract data types is missing, Year of development = 1990, The number of references of this language on the Internet = 987
+3: It is Procedural programming language: Abstract data types is present, Year of development = 1979, The number of references of this language on the Internet = 345
+4: It is Object-oriented programming language: Inheritance is interface, Year of development = 1989, The number of references of this language on the Internet = 678
+5: It is Object-oriented programming language: Inheritance is single, Year of development = 2000, The number of references of this language on the Internet = 479
+6: It is Object-oriented programming language: Inheritance is multiple, Year of development = 2009, The number of references of this language on the Internet = 562
 
 Empty container.
 Container contains 0 elements.
