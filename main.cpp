@@ -23,6 +23,10 @@ int main(int argc, char* argv[])
 	fout << "Filled container." << endl;
 	LinkedList_Output(list, fout); //вывели содержимое контейнера
 
+	fout << endl << "Sorted Linked List." << endl;
+	Sort_List(list);
+	LinkedList_Output(list, fout);
+
 	Clear(list); //деструктор списка
 	fout << "Empty container." << endl;
 	LinkedList_Output(list, fout); //вывели, что контейнер пустой

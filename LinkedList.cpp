@@ -62,3 +62,75 @@ void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 	}
 	fout << endl;
 }
+
+void Skobina::Sort_List(LinkedList& obj)
+{
+	if (obj.SizeList < 2)
+		return;
+
+	Node* current = obj.First;
+
+	bool flag = false;
+
+	do
+	{
+		current = obj.First;
+		flag = false;
+		for (size_t i = 0; i < (obj.SizeList - 1); ++i)
+		{
+			if (Compare(current->language, current->Next->language))
+			{
+				Swap(obj, current, current->Next);
+				flag = true;
+			}
+			else
+			{
+				current = current->Next;
+			}
+		}
+	} while (flag);
+}
+
+void Skobina::Swap(LinkedList& obj, Node* first, Node* second)
+{
+	if ((first->Prev == NULL) && (second->Next == NULL))
+	{
+		obj.First = second;
+		obj.Last = first;
+		first->Prev = second;
+		second->Next = first;
+		first->Next = NULL;
+		second->Prev = NULL;
+		return;
+	}
+	if ((first->Prev == NULL) && (second->Next != NULL))
+	{
+		first->Next = second->Next;
+		first->Prev = second;
+		second->Next->Prev = first;
+		second->Next = first;
+		second->Prev = NULL;
+		obj.First = second;
+		return;
+	}
+	if ((first->Prev != NULL) && (second->Next == NULL))
+	{
+		second->Prev = first->Prev;
+		first->Prev = second;
+		first->Next = NULL;
+		second->Next = first;
+		second->Prev->Next = second;
+		obj.Last = first;
+		return;
+	}
+	if ((first->Prev != NULL) && (second->Next != NULL))
+	{
+		first->Next = second->Next;
+		second->Prev = first->Prev;
+		second->Next = first;
+		first->Prev = second;
+		second->Prev->Next = second;
+		first->Next->Prev = first;
+		return;
+	}
+}

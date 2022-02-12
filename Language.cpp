@@ -52,3 +52,8 @@ int Skobina::Past_Years(Language* obj)
 	tm* localtm = localtime(&now);
 	return 1900 + localtm->tm_year - obj->year_of_development;
 }
+
+bool Skobina::Compare(Language* first, Language* second)
+{
+	return Past_Years(first) < Past_Years(second);
+}

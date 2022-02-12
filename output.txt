@@ -13,6 +13,22 @@ The number of years that have passed since the year the language was created = 2
 6: It is Object-oriented programming language: Inheritance is multiple, Year of development = 2009
 The number of years that have passed since the year the language was created = 13
 
+
+Sorted Linked List.
+Container contains 6 elements.
+1: It is Procedural programming language: Abstract data types is present, Year of development = 1979
+The number of years that have passed since the year the language was created = 43
+2: It is Object-oriented programming language: Inheritance is interface, Year of development = 1989
+The number of years that have passed since the year the language was created = 33
+3: It is Procedural programming language: Abstract data types is missing, Year of development = 1990
+The number of years that have passed since the year the language was created = 32
+4: It is Object-oriented programming language: Inheritance is single, Year of development = 1998
+The number of years that have passed since the year the language was created = 24
+5: It is Object-oriented programming language: Inheritance is single, Year of development = 2000
+The number of years that have passed since the year the language was created = 22
+6: It is Object-oriented programming language: Inheritance is multiple, Year of development = 2009
+The number of years that have passed since the year the language was created = 13
+
 Empty container.
 Container contains 0 elements.
 
