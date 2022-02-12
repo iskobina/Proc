@@ -5,6 +5,7 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin) //Language* Language_I
 	Language* language = new Language;
 	Proc* proc;
 	Object_oriented* oop;
+	Functional* func;
 	unsigned short int temp;
 	fin >> temp;
 	fin >> language->year_of_development;
@@ -22,6 +23,12 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin) //Language* Language_I
 		oop = (Object_oriented*)language;
 		language = (Language*)Object_oriented_Input(*oop, fin);
 		return language;
+	case 3:
+		func = new Functional;
+		language->key = Language::lang::FUNCTIONAL;
+		func = (Functional*)language;
+		language = (Language*)Functional_Input(*func, fin);
+		return language;
 	default:
 		return 0;
 	}
@@ -36,6 +43,9 @@ void Skobina::Language_Output(Language* obj, ofstream& fout)
 		break;
 	case Language::lang::OOP:
 		Object_oriented_Output((Object_oriented*)obj, fout);
+		break;
+	case Language::lang::FUNCTIONAL:
+		Functional_Output((Functional*)obj, fout);
 		break;
 	default:
 		fout << "Incorrect programming language" << endl;

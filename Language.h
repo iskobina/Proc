@@ -4,6 +4,7 @@
 
 #include "Proc.h"
 #include "OOP.h"
+#include "Functional.h"
 
 namespace Skobina
 {
@@ -12,7 +13,8 @@ namespace Skobina
 		enum lang //перечисление для создания наследования
 		{
 			PROC,
-			OOP
+			OOP,
+			FUNCTIONAL
 		} key;
 		unsigned short int year_of_development;
 	};

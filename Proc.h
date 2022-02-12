@@ -13,7 +13,8 @@ namespace Skobina
 		enum lang //перечисление для создания наследования
 		{
 			PROC,
-			OOP
+			OOP,
+			FUNCTIONAL
 		} key;
 		unsigned short int year_of_development;
 		bool abstract_type;
