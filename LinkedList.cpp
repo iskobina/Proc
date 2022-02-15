@@ -63,12 +63,12 @@ void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 	fout << endl;
 }
 
-void Skobina::Sort_List(LinkedList& obj)
+void Skobina::Sort_List(LinkedList& obj) //передаем весь список в функцию сортировки
 {
-	if (obj.SizeList < 2)
+	if (obj.SizeList < 2) //сортировать список из 1 элемента нет смысла
 		return;
 
-	Node* current = obj.First;
+	Node* current = obj.First; //создаем указатель на первый элемент в списке
 
 	bool flag = false;
 
@@ -76,24 +76,24 @@ void Skobina::Sort_List(LinkedList& obj)
 	{
 		current = obj.First;
 		flag = false;
-		for (size_t i = 0; i < (obj.SizeList - 1); ++i)
+		for (size_t i = 0; i < (obj.SizeList - 1); ++i) //от 0 до конца списка
 		{
-			if (Compare(current->language, current->Next->language))
+			if (Compare(current->language, current->Next->language)) //если функция compare возвращает true (если необходимо поменять местами)
 			{
-				Swap(obj, current, current->Next);
+				Swap(obj, current, current->Next); //передаем в функцию весь список, текущий элемент и следующий
 				flag = true;
 			}
 			else
 			{
-				current = current->Next;
+				current = current->Next; //если не надо менять, то переходим к следующему элементу
 			}
 		}
 	} while (flag);
 }
 
-void Skobina::Swap(LinkedList& obj, Node* first, Node* second)
+void Skobina::Swap(LinkedList& obj, Node* first, Node* second) //меняем указатели
 {
-	if ((first->Prev == NULL) && (second->Next == NULL))
+	if ((first->Prev == NULL) && (second->Next == NULL)) //если всего 2 элемента в списке
 	{
 		obj.First = second;
 		obj.Last = first;
@@ -103,7 +103,7 @@ void Skobina::Swap(LinkedList& obj, Node* first, Node* second)
 		second->Prev = NULL;
 		return;
 	}
-	if ((first->Prev == NULL) && (second->Next != NULL))
+	if ((first->Prev == NULL) && (second->Next != NULL)) //если в списке более 2-ух элементов, и мы рассматриваем 1 и 2 элементы
 	{
 		first->Next = second->Next;
 		first->Prev = second;
@@ -113,7 +113,7 @@ void Skobina::Swap(LinkedList& obj, Node* first, Node* second)
 		obj.First = second;
 		return;
 	}
-	if ((first->Prev != NULL) && (second->Next == NULL))
+	if ((first->Prev != NULL) && (second->Next == NULL)) //если в списке более 2-ух элементов, и мы рассматриваем предпоследний и последний
 	{
 		second->Prev = first->Prev;
 		first->Prev = second;
@@ -123,7 +123,7 @@ void Skobina::Swap(LinkedList& obj, Node* first, Node* second)
 		obj.Last = first;
 		return;
 	}
-	if ((first->Prev != NULL) && (second->Next != NULL))
+	if ((first->Prev != NULL) && (second->Next != NULL)) //если в списке более 2-ух элементов и мы где-то по-середине
 	{
 		first->Next = second->Next;
 		second->Prev = first->Prev;

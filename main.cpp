@@ -24,8 +24,8 @@ int main(int argc, char* argv[])
 	LinkedList_Output(list, fout); //вывели содержимое контейнера
 
 	fout << endl << "Sorted Linked List." << endl;
-	Sort_List(list);
-	LinkedList_Output(list, fout);
+	Sort_List(list); //сортируем список
+	LinkedList_Output(list, fout); //выводим в файл сортированный спискок
 
 	Clear(list); //деструктор списка
 	fout << "Empty container." << endl;
