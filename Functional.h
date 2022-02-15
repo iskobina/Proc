@@ -12,7 +12,7 @@ namespace Skobina
 	{
 		enum lang
 		{
-			PROCEDURAL,
+			PROC,
 			OOP,
 			FUNCTIONAL
 		} key;
