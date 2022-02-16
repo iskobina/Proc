@@ -63,6 +63,7 @@ void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 	fout << endl;
 }
 
+<<<<<<< HEAD
 void Skobina::Sort_List(LinkedList& obj) //передаем весь список в функцию сортировки
 {
 	if (obj.SizeList < 2) //сортировать список из 1 элемента нет смысла
@@ -133,4 +134,26 @@ void Skobina::Swap(LinkedList& obj, Node* first, Node* second) //меняем указател
 		first->Next->Prev = first;
 		return;
 	}
+=======
+void Skobina::Only_Procedural(LinkedList& obj, ofstream& fout)
+{
+	Node* current = obj.First;
+	fout << "Only Procedural languages." << endl;
+
+	for (size_t i = 0; i < obj.SizeList; i++)
+	{
+		fout << i + 1 << ": ";
+		if (current->language->key == Language::lang::PROC)
+		{
+			Language_Output(current->language, fout);
+		}
+		else
+		{
+			fout << endl;
+		}
+		current = current->Next;
+	}
+
+	fout << endl;
+>>>>>>> lab2.5
 }
