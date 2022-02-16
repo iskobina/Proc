@@ -11,6 +11,7 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin) //Language* Language_I
 	unsigned short int temp;
 	fin >> temp;
 	fin >> language->year_of_development;
+	fin >> language->reference;
 	switch (temp)
 	{
 	case 1:
@@ -53,6 +54,7 @@ void Skobina::Language_Output(Language* obj, ofstream& fout)
 		fout << "Incorrect programming language" << endl;
 		return;
 	}
+<<<<<<< HEAD
 	fout << "Year of development = " << obj->year_of_development << endl;
 }
 
@@ -66,4 +68,8 @@ int Skobina::Past_Years(Language* obj)
 bool Skobina::Compare(Language* first, Language* second)
 {
 	return Past_Years(first) < Past_Years(second);
+=======
+	fout << "Year of development = " << obj->year_of_development
+		<< ", The number of references of this language on the Internet = " << obj->reference << endl;
+>>>>>>> lab2.3
 }

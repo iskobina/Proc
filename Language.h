@@ -17,6 +17,7 @@ namespace Skobina
 			FUNCTIONAL
 		} key;
 		unsigned short int year_of_development;
+		int reference;
 	};
 
 	Language* Language_Input(ifstream& fin);
