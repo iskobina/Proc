@@ -63,7 +63,6 @@ void Skobina::LinkedList_Output(LinkedList& obj, ofstream& fout)
 	fout << endl;
 }
 
-<<<<<<< HEAD
 void Skobina::Sort_List(LinkedList& obj) //передаем весь список в функцию сортировки
 {
 	if (obj.SizeList < 2) //сортировать список из 1 элемента нет смысла
@@ -134,7 +133,8 @@ void Skobina::Swap(LinkedList& obj, Node* first, Node* second) //меняем указател
 		first->Next->Prev = first;
 		return;
 	}
-=======
+}
+
 void Skobina::Only_Procedural(LinkedList& obj, ofstream& fout)
 {
 	Node* current = obj.First;
@@ -155,5 +155,4 @@ void Skobina::Only_Procedural(LinkedList& obj, ofstream& fout)
 	}
 
 	fout << endl;
->>>>>>> lab2.5
 }

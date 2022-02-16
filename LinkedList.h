@@ -26,12 +26,10 @@ namespace Skobina
 	void LinkedList_Input(LinkedList& obj, ifstream& fin);
 	void LinkedList_Output(LinkedList& obj, ofstream& fout);
 
-<<<<<<< HEAD
 	void Sort_List(LinkedList& obj);
 	void Swap(LinkedList& obj, Node* first, Node* second);
-=======
+
 	void Only_Procedural(LinkedList& obj, ofstream& fout);
->>>>>>> lab2.5
 }
 
 #endif

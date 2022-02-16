@@ -23,13 +23,10 @@ int main(int argc, char* argv[])
 	fout << "Filled container." << endl;
 	LinkedList_Output(list, fout); //вывели содержимое контейнера
 
-<<<<<<< HEAD
 	fout << endl << "Sorted Linked List." << endl;
 	Sort_List(list); //сортируем список
 	LinkedList_Output(list, fout); //выводим в файл сортированный спискок
-=======
 	Only_Procedural(list, fout); //вызов функции фильтрованного вывода
->>>>>>> lab2.5
 
 	Clear(list); //деструктор списка
 	fout << "Empty container." << endl;
