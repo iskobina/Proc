@@ -5,18 +5,18 @@ bool Skobina::Functional_Input(Functional& obj, ifstream& fin)
 {
 	string temp;
 	fin >> temp;
-	if (temp == "\0")
+	if (temp == "\0") // проверка на конец строки
 	{
 		return false;
 	}
-	if (temp.length() > 1)
+	if (temp.length() > 1) // проверка на длину строки
 	{
-		getline(fin, temp, '\n');
+		getline(fin, temp, '\n'); // пропуск оставшихся данных
 		return false;
 	}
-	if (!isdigit(int(unsigned char(temp.front()))))
+	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
 	{
-		getline(fin, temp, '\n');
+		getline(fin, temp, '\n'); // пропуск оставшихся данных
 		return false;
 	}
 
@@ -31,21 +31,21 @@ bool Skobina::Functional_Input(Functional& obj, ifstream& fin)
 	}
 
 	fin >> temp;
-	if (temp == "\0")
+	if (temp == "\0") // проверка на конец строки
 	{
 		return false;
 	}
-	if (temp.length() > 1)
+	if (temp.length() > 1) // проверка на длину строки
 	{
 		return false;
 	}
-	if (!isdigit(int(unsigned char(temp.front()))))
+	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
 	{
 		return false;
 	}
 	state = stoi(temp);
 
-	getline(fin, temp, '\n');
+	getline(fin, temp, '\n'); // пропуск оставшихся данных
 
 	switch (state)
 	{

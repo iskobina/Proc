@@ -12,56 +12,56 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin)
 
 	string temp;
 	fin >> temp;
-	if (temp == "\0")
+	if (temp == "\0") // проверка на конец строки
 	{
 		return NULL;
 	}
-	if (temp.length() > 1)
+	if (temp.length() > 1) // проверка на длину строки
 	{
 		fin.get();
-		getline(fin, temp, '\n');
+		getline(fin, temp, '\n'); // пропуск оставшихся данных
 		return NULL;
 	}
-	if (!isdigit(int(unsigned char(temp.front()))))
+	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
 	{
 		fin.get();
-		getline(fin, temp, '\n');
+		getline(fin, temp, '\n'); // пропуск оставшихся данных
 		return NULL;
 	}
 	int state = stoi(temp);
 
-	getline(fin, temp, '\n');
+	getline(fin, temp, '\n'); // пропуск оставшихся данных
 
 	fin >> temp;
-	if (temp == "\0")
+	if (temp == "\0") // проверка на конец строки
 	{
 		return NULL;
 	}
-	if (temp.length() != 4)
+	if (temp.length() != 4) // проверка на длину строки
 	{
-		getline(fin, temp, '\n');
+		getline(fin, temp, '\n'); // пропуск оставшихся данных
 		return NULL;
 	}
 	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
 	{
-		if (!isdigit(int(unsigned char(*iter))))
+		if (!isdigit(int(unsigned char(*iter)))) // проверка на ввод цифры
 		{
-			getline(fin, temp, '\n');
+			getline(fin, temp, '\n'); // пропуск оставшихся данных
 			return NULL;
 		}
 	}
 	language->year_of_development = stoul(temp);
 
 	fin >> temp;
-	if (temp == "\0")
+	if (temp == "\0") // проверка на конец строки
 	{
 		return NULL;
 	}
 	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
 	{
-		if (!isdigit(int(unsigned char(*iter))))
+		if (!isdigit(int(unsigned char(*iter)))) // проверка на ввод цифры
 		{
-			getline(fin, temp, '\n');
+			getline(fin, temp, '\n'); // пропуск оставшихся данных
 			return NULL;
 		}
 	}
@@ -106,7 +106,7 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin)
 			return language;
 		}
 	default:
-		getline(fin, temp, '\n');
+		getline(fin, temp, '\n'); // пропуск оставшихся данных
 		return NULL;
 	}
 }

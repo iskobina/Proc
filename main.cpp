@@ -7,7 +7,7 @@ using namespace Skobina;
 
 int main(int argc, char* argv[])
 {
-	if (argc != 3)
+	if (argc != 3) // проверка на передачу в программу корректных параметров
 	{
 		cout << "incorrect command line! "
 			"Waited: command infile outfile" << endl;
@@ -15,14 +15,14 @@ int main(int argc, char* argv[])
 	}
 
 	ifstream fin(argv[1]);
-	if (!fin.is_open())
+	if (!fin.is_open()) // проверка на доступ к файлу
 	{
 		cout << "No input file found or could not open!" << endl;
 		system("pause");
 		return 1;
 	}
 	ofstream fout(argv[2]);
-	if (!fin.is_open())
+	if (!fout.is_open()) // проверка на доступ к файлу
 	{
 		cout << "No output file found or could not open!" << endl;
 		system("pause");
@@ -33,17 +33,17 @@ int main(int argc, char* argv[])
 
 	Linked_List list;
 	Init(list);
-	Linked_List_Input(list, fin);
+	Linked_List_Input(list, fin); // создание связного списка и его заполнение
 	fout << "Filled container." << endl;
-	Linked_List_Output(list, fout);
+	Linked_List_Output(list, fout); // вывод в файл
 
 	fout << endl << "Sorted Linked List." << endl;
-	Sort_List(list);
-	Linked_List_Output(list, fout);
+	Sort_List(list); // сортировка списка
+	Linked_List_Output(list, fout); // вывод в файл отсортированного списка
 
-	Only_Procedural(list, fout);
+	Only_Procedural(list, fout); // фильтрованный вывод в файл
 
-	Clear(list);
+	Clear(list); // вызов деструктора
 	fout << "Empty container." << endl;
 	Linked_List_Output(list, fout);
 

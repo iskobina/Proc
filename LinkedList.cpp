@@ -1,13 +1,13 @@
 #include "LinkedList.h"
 
-void Skobina::Init(Linked_List& obj)
+void Skobina::Init(Linked_List& obj) // конструктор
 {
 	obj.head = NULL;
 	obj.tail = NULL;
 	obj.size_list = 0;
 }
 
-void Skobina::Clear(Linked_List& obj)
+void Skobina::Clear(Linked_List& obj) // деструктор
 {
 	Node* temp = NULL;
 	while (obj.tail != NULL)
@@ -27,7 +27,7 @@ void Skobina::Linked_List_Input(Linked_List& obj, ifstream& fin)
 	{
 		temp = new Node;
 
-		temp->language = Language_Input(fin);
+		temp->language = Language_Input(fin); // заполнение блока данных
 		temp->next = NULL;
 		++obj.size_list;
 
@@ -47,7 +47,7 @@ void Skobina::Linked_List_Input(Linked_List& obj, ifstream& fin)
 
 void Skobina::Linked_List_Output(Linked_List& obj, ofstream& fout)
 {
-	Node* current = obj.head;
+	Node* current = obj.head; // создание указателя на первый элемент
 	fout << "Container contains " << obj.size_list << " elements." << endl;
 
 	for (size_t i = 0; i < obj.size_list; i++)
@@ -67,9 +67,9 @@ void Skobina::Linked_List_Output(Linked_List& obj, ofstream& fout)
 	}
 }
 
-void Skobina::Sort_List(Linked_List& obj)
+void Skobina::Sort_List(Linked_List& obj) // функция сортировки списка
 {
-	if (obj.size_list < 2)
+	if (obj.size_list < 2) // список с одним элементом не сортируется
 	{
 		return;
 	}
@@ -98,7 +98,7 @@ void Skobina::Sort_List(Linked_List& obj)
 
 void Skobina::Swap(Linked_List& obj, Node* first, Node* second)
 {
-	if ((first->prev == NULL) && (second->next == NULL))
+	if ((first->prev == NULL) && (second->next == NULL)) // если всего 2 элемента в списке
 	{
 		obj.head = second;
 		obj.tail = first;
