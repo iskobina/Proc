@@ -13,24 +13,40 @@ int main(int argc, char* argv[])
 			"Waited: command infile outfile" << endl;
 		exit(1);
 	}
+
 	ifstream fin(argv[1]);
+	if (!fin.is_open())
+	{
+		cout << "No input file found or could not open!" << endl;
+		system("pause");
+		return 1;
+	}
 	ofstream fout(argv[2]);
+	if (!fin.is_open())
+	{
+		cout << "No output file found or could not open!" << endl;
+		system("pause");
+		return 1;
+	}
 
 	cout << "Start" << endl;
-	LinkedList list;
-	Init(list); //конструктор списка
-	LinkedList_Input(list, fin); //заполнение списка
+
+	Linked_List list;
+	Init(list);
+	Linked_List_Input(list, fin);
 	fout << "Filled container." << endl;
-	LinkedList_Output(list, fout); //вывели содержимое контейнера
+	Linked_List_Output(list, fout);
 
 	fout << endl << "Sorted Linked List." << endl;
-	Sort_List(list); //сортируем список
-	LinkedList_Output(list, fout); //выводим в файл сортированный спискок
-	Only_Procedural(list, fout); //вызов функции фильтрованного вывода
+	Sort_List(list);
+	Linked_List_Output(list, fout);
 
-	Clear(list); //деструктор списка
+	Only_Procedural(list, fout);
+
+	Clear(list);
 	fout << "Empty container." << endl;
-	LinkedList_Output(list, fout); //вывели, что контейнер пустой
+	Linked_List_Output(list, fout);
+
 	cout << "Stop" << endl;
 	return 0;
 }

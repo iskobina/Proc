@@ -1,71 +1,158 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Language.h"
 #include <ctime>
+#include <string>
 
-Skobina::Language* Skobina::Language_Input(ifstream& fin) //Language* Language_Input(ifstream& fin)
+Skobina::Language* Skobina::Language_Input(ifstream& fin)
 {
 	Language* language = new Language;
-	Proc* proc;
-	Object_oriented* oop;
+	Procedural* proc;
+	Object_Oriented* oop;
 	Functional* func;
-	unsigned short int temp;
+
+	string temp;
 	fin >> temp;
-	fin >> language->year_of_development;
-	fin >> language->reference;
-	switch (temp)
+	if (temp == "\0")
+	{
+		return NULL;
+	}
+	if (temp.length() > 1)
+	{
+		fin.get();
+		getline(fin, temp, '\n');
+		return NULL;
+	}
+	if (!isdigit(int(unsigned char(temp.front()))))
+	{
+		fin.get();
+		getline(fin, temp, '\n');
+		return NULL;
+	}
+	int state = stoi(temp);
+
+	fin >> temp;
+	if (temp == "\0")
+	{
+		return NULL;
+	}
+	if (temp.length() != 4)
+	{
+		getline(fin, temp, '\n');
+		return NULL;
+	}
+	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
+	{
+		if (!isdigit(int(unsigned char(*iter))))
+		{
+			getline(fin, temp, '\n');
+			return NULL;
+		}
+	}
+	language->year_of_development = stoul(temp);
+
+	fin >> temp;
+	if (temp == "\0")
+	{
+		return NULL;
+	}
+	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
+	{
+		if (!isdigit(int(unsigned char(*iter))))
+		{
+			getline(fin, temp, '\n');
+			return NULL;
+		}
+	}
+	language->reference = stoull(temp);
+
+	switch (state)
 	{
 	case 1:
-		proc = new Proc;
-		language->key = Language::lang::PROC;
-		proc = (Proc*)language; //все схожие переменные у proc как у lang
-		language = (Language*)Proc_Input(*proc, fin); //вызов функции для дозаполнения данных 
-		return language;
+		proc = new Procedural;
+		language->key = Language::lang::PROCEDURAL;
+		proc = (Procedural*)language;
+		if (!Procedural_Input(*proc, fin))
+		{
+			return NULL;
+		}
+		else
+		{
+			return language;
+		}
 	case 2:
-		oop = new Object_oriented;
+		oop = new Object_Oriented;
 		language->key = Language::lang::OOP;
-		oop = (Object_oriented*)language;
-		language = (Language*)Object_oriented_Input(*oop, fin);
-		return language;
+		oop = (Object_Oriented*)language;
+		if (!Object_Oriented_Input(*oop, fin))
+		{
+			return NULL;
+		}
+		else
+		{
+			return language;
+		}
 	case 3:
 		func = new Functional;
 		language->key = Language::lang::FUNCTIONAL;
 		func = (Functional*)language;
-		language = (Language*)Functional_Input(*func, fin);
-		return language;
+		if (!Functional_Input(*func, fin))
+		{
+			return NULL;
+		}
+		else
+		{
+			return language;
+		}
 	default:
-		return 0;
+		getline(fin, temp, '\n');
+		return NULL;
 	}
 }
 
-void Skobina::Language_Output(Language* obj, ofstream& fout)
+void Skobina::Language_Output(Language& obj, ofstream& fout)
 {
-	switch (obj->key)
+	switch (obj.key)
 	{
-	case Language::lang::PROC:
-		Proc_Output((Proc*)obj, fout);
+	case Language::lang::PROCEDURAL:
+		Procedural_Output((Procedural&)obj, fout);
 		break;
 	case Language::lang::OOP:
-		Object_oriented_Output((Object_oriented*)obj, fout);
+		Object_Oriented_Output((Object_Oriented&)obj, fout);
 		break;
 	case Language::lang::FUNCTIONAL:
-		Functional_Output((Functional*)obj, fout);
+		Functional_Output((Functional&)obj, fout);
 		break;
 	default:
 		fout << "Incorrect programming language" << endl;
 		return;
 	}
-	fout << "Year of development = " << obj->year_of_development
-		<< ", The number of references of this language on the Internet = " << obj->reference << endl;
+	fout << "Year of development = " << obj.year_of_development
+		<< ", The number of references of this language on the Internet = " << obj.reference << endl;
 }
 
-int Skobina::Past_Years(Language* obj)
+int Skobina::Past_Years(Language& obj)
 {
 	time_t now = time(NULL);
 	tm* localtm = localtime(&now);
-	return 1900 + localtm->tm_year - obj->year_of_development;
+	return 1900 + localtm->tm_year - obj.year_of_development;
 }
 
 bool Skobina::Compare(Language* first, Language* second)
 {
-	return Past_Years(first) < Past_Years(second);
+	if (first == NULL && second != NULL)
+	{
+		return true;
+	}
+	if (first != NULL && second == NULL)
+	{
+		return false;
+	}
+	if (first == NULL && second == NULL)
+	{
+		return false;
+	}
+	if (first != NULL && second != NULL)
+	{
+		return Past_Years(*first) < Past_Years(*second);
+	}
 }

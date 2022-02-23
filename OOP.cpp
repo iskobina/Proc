@@ -1,37 +1,52 @@
 #include "OOP.h"
+#include <string>
 
-Skobina::Object_oriented* Skobina::Object_oriented_Input(Object_oriented& obj, ifstream& fin)
+bool Skobina::Object_Oriented_Input(Object_Oriented& obj, ifstream& fin)
 {
-	unsigned short int temp;
+	string temp;
 	fin >> temp;
-	switch (temp)
+	if (temp == "\0")
+	{
+		return false;
+	}
+	if (temp.length() > 1)
+	{
+		return false;
+	}
+	if (!isdigit(int(unsigned char(temp.front()))))
+	{
+		return false;
+	}
+
+	int state = stoi(temp);
+	switch (state)
 	{
 	case 1:
-		obj.number = Object_oriented::inheritance::SINGLE;
-		return &obj;
+		obj.number = Object_Oriented::inheritance::SINGLE;
+		return true;
 	case 2:
-		obj.number = Object_oriented::inheritance::MULTIPLE;
-		return &obj;
+		obj.number = Object_Oriented::inheritance::MULTIPLE;
+		return true;
 	case 3:
-		obj.number = Object_oriented::inheritance::INTERFACE;
-		return &obj;
+		obj.number = Object_Oriented::inheritance::INTERFACE;
+		return true;
 	default:
-		return NULL;
+		return false;
 	}
 }
 
-void Skobina::Object_oriented_Output(Object_oriented* obj, ofstream& fout)
+void Skobina::Object_Oriented_Output(Object_Oriented& obj, ofstream& fout)
 {
 	fout << "It is Object-oriented programming language: Inheritance is ";
-	switch (obj->number)
+	switch (obj.number)
 	{
-	case Object_oriented::inheritance::SINGLE:
+	case Object_Oriented::inheritance::SINGLE:
 		fout << "single, ";
 		break;
-	case Object_oriented::inheritance::MULTIPLE:
+	case Object_Oriented::inheritance::MULTIPLE:
 		fout << "multiple, ";
 		break;
-	case Object_oriented::inheritance::INTERFACE:
+	case Object_Oriented::inheritance::INTERFACE:
 		fout << "interface, ";
 		break;
 	default:

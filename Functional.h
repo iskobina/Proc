@@ -1,4 +1,3 @@
-#pragma once
 #ifndef FUNCTIONAL_H
 #define FUNCTIONAL_H
 
@@ -12,12 +11,12 @@ namespace Skobina
 	{
 		enum lang
 		{
-			PROC,
+			PROCEDURAL,
 			OOP,
 			FUNCTIONAL
 		} key;
-		unsigned short int year_of_development;
-		int reference;
+		unsigned int year_of_development;
+		unsigned long long int reference;
 		bool lazy_calculations;
 		enum typification
 		{
@@ -26,8 +25,8 @@ namespace Skobina
 		} type;
 	};
 
-	Functional* Functional_Input(Functional& obj, ifstream& fin);
-	void Functional_Output(Functional* obj, ofstream& fout);
+	bool Functional_Input(Functional& obj, ifstream& fin);
+	void Functional_Output(Functional& obj, ofstream& fout);
 }
 
 #endif
