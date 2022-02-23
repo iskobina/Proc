@@ -19,6 +19,9 @@ bool Skobina::Procedural_Input(Procedural& obj, ifstream& fin)
 	}
 
 	int state = stoi(temp);
+
+	getline(fin, temp, '\n');
+
 	if (state > 0)
 	{
 		obj.abstract_type = true;

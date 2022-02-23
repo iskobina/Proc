@@ -43,8 +43,10 @@ bool Skobina::Functional_Input(Functional& obj, ifstream& fin)
 	{
 		return false;
 	}
-
 	state = stoi(temp);
+
+	getline(fin, temp, '\n');
+
 	switch (state)
 	{
 	case 1:

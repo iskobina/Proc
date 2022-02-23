@@ -30,6 +30,8 @@ Skobina::Language* Skobina::Language_Input(ifstream& fin)
 	}
 	int state = stoi(temp);
 
+	getline(fin, temp, '\n');
+
 	fin >> temp;
 	if (temp == "\0")
 	{

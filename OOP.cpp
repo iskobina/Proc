@@ -19,6 +19,9 @@ bool Skobina::Object_Oriented_Input(Object_Oriented& obj, ifstream& fin)
 	}
 
 	int state = stoi(temp);
+
+	getline(fin, temp, '\n');
+
 	switch (state)
 	{
 	case 1:
