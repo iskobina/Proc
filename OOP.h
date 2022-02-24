@@ -9,24 +9,26 @@ namespace Skobina
 {
 	struct Object_Oriented
 	{
-		enum lang
+		enum Lang
 		{
 			PROCEDURAL,
 			OOP,
 			FUNCTIONAL
-		} key;
-		unsigned int year_of_development;
-		unsigned long long int reference;
-		enum inheritance
+		} Key;
+
+		unsigned int YearOfDevelopment;
+		unsigned long long int Reference;
+
+		enum Inheritance
 		{
 			SINGLE,
 			MULTIPLE,
 			INTERFACE
-		} number;
+		} Number;
 	};
 
-	bool Object_Oriented_Input(Object_Oriented& obj, ifstream& fin);
-	void Object_Oriented_Output(Object_Oriented& obj, ofstream& fout);
+	bool Object_Oriented_Input(Object_Oriented& Obj, ifstream& FileInput);
+	void Object_Oriented_Output(Object_Oriented& Obj, ofstream& FileOutput);
 }
 
 #endif

@@ -1,84 +1,87 @@
 #include "Functional.h"
 #include <string>
 
-bool Skobina::Functional_Input(Functional& obj, ifstream& fin)
+bool Skobina::Functional_Input(Functional& Obj, ifstream& FileInput)
 {
-	string temp;
-	fin >> temp;
-	if (temp == "\0") // проверка на конец строки
+	string TempString;
+
+	FileInput >> TempString;
+	if (TempString == "\0") // проверка на конец строки
 	{
 		return false;
 	}
-	if (temp.length() > 1) // проверка на длину строки
+	if (TempString.length() > 1) // проверка на длину строки
 	{
-		getline(fin, temp, '\n'); // пропуск оставшихся данных
+		getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 		return false;
 	}
-	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
+	if (!isdigit(int(unsigned char(TempString.front())))) // проверка на ввод цифры
 	{
-		getline(fin, temp, '\n'); // пропуск оставшихся данных
+		getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 		return false;
 	}
 
-	int state = stoi(temp);
-	if (state > 0)
+	int State = stoi(TempString);
+	if (State > 0)
 	{
-		obj.lazy_calculations = true;
+		Obj.LazyCalculations = true;
 	}
 	else
 	{
-		obj.lazy_calculations = false;
+		Obj.LazyCalculations = false;
 	}
 
-	fin >> temp;
-	if (temp == "\0") // проверка на конец строки
+	FileInput >> TempString;
+	if (TempString == "\0") // проверка на конец строки
 	{
 		return false;
 	}
-	if (temp.length() > 1) // проверка на длину строки
+	if (TempString.length() > 1) // проверка на длину строки
 	{
 		return false;
 	}
-	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
+	if (!isdigit(int(unsigned char(TempString.front())))) // проверка на ввод цифры
 	{
 		return false;
 	}
-	state = stoi(temp);
+	State = stoi(TempString);
 
-	getline(fin, temp, '\n'); // пропуск оставшихся данных
+	getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 
-	switch (state)
+	switch (State)
 	{
 	case 1:
-		obj.type = Functional::typification::STRICT;
+		Obj.Type = Functional::Typification::STRICT;
 		return true;
 	case 2:
-		obj.type = Functional::typification::DYNAMIC;
+		Obj.Type = Functional::Typification::DYNAMIC;
 		return true;
 	default:
 		return false;
 	}
 }
 
-void Skobina::Functional_Output(Functional& obj, ofstream& fout)
+
+void Skobina::Functional_Output(Functional& Obj, ofstream& FileOutput)
 {
-	fout << "It is Functional programming language: Support \"lazy\" calculations is ";
-	if (obj.lazy_calculations)
+	FileOutput << "It is Functional programming language: Support \"lazy\" calculations is ";
+	if (Obj.LazyCalculations)
 	{
-		fout << "present, ";
+		FileOutput << "present, ";
 	}
 	else
 	{
-		fout << "missing, ";
+		FileOutput << "missing, ";
 	}
-	fout << "Typification is ";
-	switch (obj.type)
+	FileOutput << "Typification is ";
+
+	switch (Obj.Type)
 	{
-	case Functional::typification::STRICT:
-		fout << "strict, ";
+	case Functional::Typification::STRICT:
+		FileOutput << "strict, ";
 		break;
-	case Functional::typification::DYNAMIC:
-		fout << "dynamic, ";
+	case Functional::Typification::DYNAMIC:
+		FileOutput << "dynamic, ";
 		break;
 	default:
 		break;

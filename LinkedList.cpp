@@ -1,167 +1,176 @@
 #include "LinkedList.h"
 
-void Skobina::Init(Linked_List& obj) // конструктор
+void Skobina::Init(Linked_List& Obj) // конструктор
 {
-	obj.head = NULL;
-	obj.tail = NULL;
-	obj.size_list = 0;
+	Obj.Head = NULL;
+	Obj.Tail = NULL;
+	Obj.SizeLinkedList = 0;
 }
 
-void Skobina::Clear(Linked_List& obj) // деструктор
+
+void Skobina::Clear(Linked_List& Obj) // деструктор
 {
-	Node* temp = NULL;
-	while (obj.tail != NULL)
+	Node* TempNode = NULL;
+
+	while (Obj.Tail != NULL)
 	{
-		temp = obj.tail->prev;
-		delete obj.tail;
-		obj.tail = temp;
-		--obj.size_list;
+		TempNode = Obj.Tail->Previous;
+		delete Obj.Tail;
+		Obj.Tail = TempNode;
+		--Obj.SizeLinkedList;
 	}
-	obj.head = temp;
+	Obj.Head = TempNode;
 }
 
-void Skobina::Linked_List_Input(Linked_List& obj, ifstream& fin)
+
+void Skobina::Linked_List_Input(Linked_List& Obj, ifstream& FileInput)
 {
-	Node* temp;
-	while (!fin.eof())
+	Node* TempNode;
+
+	while (!FileInput.eof())
 	{
-		temp = new Node;
+		TempNode = new Node;
 
-		temp->language = Language_Input(fin); // заполнение блока данных
-		temp->next = NULL;
-		++obj.size_list;
+		TempNode->Langu = Language_Input(FileInput); // заполнение блока данных
+		TempNode->Next = NULL;
+		++Obj.SizeLinkedList;
 
-		if (obj.head == NULL)
+		if (Obj.Head == NULL)
 		{
-			temp->prev = NULL;
-			obj.head = obj.tail = temp;
+			TempNode->Previous = NULL;
+			Obj.Head = Obj.Tail = TempNode;
 		}
 		else
 		{
-			temp->prev = obj.tail;
-			obj.tail->next = temp;
-			obj.tail = temp;
+			TempNode->Previous = Obj.Tail;
+			Obj.Tail->Next = TempNode;
+			Obj.Tail = TempNode;
 		}
 	}
 }
 
-void Skobina::Linked_List_Output(Linked_List& obj, ofstream& fout)
-{
-	Node* current = obj.head; // создание указателя на первый элемент
-	fout << "Container contains " << obj.size_list << " elements." << endl;
 
-	for (size_t i = 0; i < obj.size_list; i++)
+void Skobina::Linked_List_Output(Linked_List& Obj, ofstream& FileOutput)
+{
+	Node* TempNode = Obj.Head; // создание указателя на первый элемент
+	FileOutput << "Container contains " << Obj.SizeLinkedList << " elements." << endl;
+
+	for (size_t i = 0; i < Obj.SizeLinkedList; i++)
 	{
-		fout << i + 1 << ": ";
-		if (current->language == NULL)
+		FileOutput << i + 1 << ": ";
+		if (TempNode->Langu == NULL)
 		{
-			fout << "Error reading data! Expected other values in the string." << endl;
+			FileOutput << "Error reading data! Expected other values in the string." << endl;
 		}
 		else
 		{
-			Language_Output(*current->language, fout);
-			fout << "The number of years that have passed since the year the language was created = "
-				<< Past_Years(*current->language) << endl;
+			Language_Output(*TempNode->Langu, FileOutput);
+			FileOutput << "The number of years that have passed since the year the language was created = "
+				<< Past_Years(*TempNode->Langu) << endl;
 		}
-		current = current->next;
+		TempNode = TempNode->Next;
 	}
 }
 
-void Skobina::Sort_List(Linked_List& obj) // функция сортировки списка
+
+void Skobina::Sort_List(Linked_List& Obj) // функция сортировки списка
 {
-	if (obj.size_list < 2) // список с одним элементом не сортируется
+	if (Obj.SizeLinkedList < 2) // список с одним элементом не сортируется
 	{
 		return;
 	}
 
-	Node* current = obj.head;
-	bool flag = false;
+	Node* TempNode = Obj.Head;
+	bool Flag = false;
 
 	do
 	{
-		current = obj.head;
-		flag = false;
-		for (size_t i = 0; i < (obj.size_list - 1); ++i)
+		TempNode = Obj.Head;
+		Flag = false;
+
+		for (size_t i = 0; i < (Obj.SizeLinkedList - 1); ++i)
 		{
-			if (Compare(current->language, current->next->language))
+			if (Compare(TempNode->Langu, TempNode->Next->Langu))
 			{
-				Swap(obj, current, current->next);
-				flag = true;
+				Swap(Obj, TempNode, TempNode->Next);
+				Flag = true;
 			}
 			else
 			{
-				current = current->next;
+				TempNode = TempNode->Next;
 			}
 		}
-	} while (flag);
+	} while (Flag);
 }
 
-void Skobina::Swap(Linked_List& obj, Node* first, Node* second)
+
+void Skobina::Swap(Linked_List& Obj, Node* First, Node* Second)
 {
-	if ((first->prev == NULL) && (second->next == NULL)) // если всего 2 элемента в списке
+	if ((First->Previous == NULL) && (Second->Next == NULL)) // если всего 2 элемента в списке
 	{
-		obj.head = second;
-		obj.tail = first;
-		first->prev = second;
-		second->next = first;
-		first->next = NULL;
-		second->prev = NULL;
+		Obj.Head = Second;
+		Obj.Tail = First;
+		First->Previous = Second;
+		Second->Next = First;
+		First->Next = NULL;
+		Second->Previous = NULL;
 		return;
 	}
-	if ((first->prev == NULL) && (second->next != NULL))
+	if ((First->Previous == NULL) && (Second->Next != NULL))
 	{
-		first->next = second->next;
-		first->prev = second;
-		second->next->prev = first;
-		second->next = first;
-		second->prev = NULL;
-		obj.head = second;
+		First->Next = Second->Next;
+		First->Previous = Second;
+		Second->Next->Previous = First;
+		Second->Next = First;
+		Second->Previous = NULL;
+		Obj.Head = Second;
 		return;
 	}
-	if ((first->prev != NULL) && (second->next == NULL))
+	if ((First->Previous != NULL) && (Second->Next == NULL))
 	{
-		second->prev = first->prev;
-		first->prev = second;
-		first->next = NULL;
-		second->next = first;
-		second->prev->next = second;
-		obj.tail = first;
+		Second->Previous = First->Previous;
+		First->Previous = Second;
+		First->Next = NULL;
+		Second->Next = First;
+		Second->Previous->Next = Second;
+		Obj.Tail = First;
 		return;
 	}
-	if ((first->prev != NULL) && (second->next != NULL))
+	if ((First->Previous != NULL) && (Second->Next != NULL))
 	{
-		first->next = second->next;
-		second->prev = first->prev;
-		second->next = first;
-		first->prev = second;
-		second->prev->next = second;
-		first->next->prev = first;
+		First->Next = Second->Next;
+		Second->Previous = First->Previous;
+		Second->Next = First;
+		First->Previous = Second;
+		Second->Previous->Next = Second;
+		First->Next->Previous = First;
 		return;
 	}
 }
 
-void Skobina::Only_Procedural(Linked_List& obj, ofstream& fout)
-{
-	Node* current = obj.head;
-	fout << endl << "Only Procedural languages." << endl;
 
-	for (size_t i = 0; i < obj.size_list; i++)
+void Skobina::Linked_List_Output_Only_Procedural(Linked_List& Obj, ofstream& FileOutput)
+{
+	Node* TempNode = Obj.Head;
+	FileOutput << endl << "Only Procedural languages." << endl;
+
+	for (size_t i = 0; i < Obj.SizeLinkedList; i++)
 	{
-		fout << i + 1 << ": ";
-		if (current->language == NULL)
+		FileOutput << i + 1 << ": ";
+		if (TempNode->Langu == NULL)
 		{
-			fout << endl;
+			FileOutput << endl;
 			continue;
 		}
-		if (current->language->key == Language::lang::PROCEDURAL)
+		if (TempNode->Langu->Key == Language::Lang::PROCEDURAL)
 		{
-			Language_Output(*current->language, fout);
+			Language_Output(*TempNode->Langu, FileOutput);
 		}
 		else
 		{
-			fout << endl;
+			FileOutput << endl;
 		}
-		current = current->next;
+		TempNode = TempNode->Next;
 	}
-	fout << endl;
+	FileOutput << endl;
 }

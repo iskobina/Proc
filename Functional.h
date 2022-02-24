@@ -9,24 +9,26 @@ namespace Skobina
 {
 	struct Functional
 	{
-		enum lang
+		enum Lang
 		{
 			PROCEDURAL,
 			OOP,
 			FUNCTIONAL
-		} key;
-		unsigned int year_of_development;
-		unsigned long long int reference;
-		bool lazy_calculations;
-		enum typification
+		} Key;
+
+		unsigned int YearOfDevelopment;
+		unsigned long long int Reference;
+		bool LazyCalculations;
+
+		enum Typification
 		{
 			STRICT,
 			DYNAMIC
-		} type;
+		} Type;
 	};
 
-	bool Functional_Input(Functional& obj, ifstream& fin);
-	void Functional_Output(Functional& obj, ofstream& fout);
+	bool Functional_Input(Functional& Obj, ifstream& FileInput);
+	void Functional_Output(Functional& Obj, ofstream& FileOutput);
 }
 
 #endif

@@ -9,20 +9,22 @@ namespace Skobina
 {
 	struct Language
 	{
-		enum lang
+		enum Lang
 		{
 			PROCEDURAL,
 			OOP,
 			FUNCTIONAL
-		} key;
-		unsigned int year_of_development;
-		unsigned long long int reference;
+		} Key;
+
+		unsigned int YearOfDevelopment;
+		unsigned long long int Reference;
 	};
 
-	Language* Language_Input(ifstream& fin);
-	void Language_Output(Language& obj, ofstream& fout);
-	int Past_Years(Language& obj);
-	bool Compare(Language* first, Language* second);
+	Language* Language_Input(ifstream& FileInput);
+	void Language_Output(Language& Obj, ofstream& FileOutput);
+
+	int Past_Years(Language& Obj);
+	bool Compare(Language* First, Language* Second);
 }
 
 #endif

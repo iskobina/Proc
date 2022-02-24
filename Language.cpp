@@ -3,141 +3,149 @@
 #include <ctime>
 #include <string>
 
-Skobina::Language* Skobina::Language_Input(ifstream& fin)
+Skobina::Language* Skobina::Language_Input(ifstream& FileInput)
 {
-	Language* language = new Language;
-	Procedural* proc;
-	Object_Oriented* oop;
-	Functional* func;
+	Language* Langua = new Language;
+	Procedural* Proc;
+	Object_Oriented* Oop;
+	Functional* Func;
 
-	string temp;
-	fin >> temp;
-	if (temp == "\0") // проверка на конец строки
-	{
-		return NULL;
-	}
-	if (temp.length() > 1) // проверка на длину строки
-	{
-		fin.get();
-		getline(fin, temp, '\n'); // пропуск оставшихся данных
-		return NULL;
-	}
-	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
-	{
-		fin.get();
-		getline(fin, temp, '\n'); // пропуск оставшихся данных
-		return NULL;
-	}
-	int state = stoi(temp);
+	string TempString;
 
-	getline(fin, temp, '\n'); // пропуск оставшихся данных
+	FileInput >> TempString;
+	if (TempString == "\0") // проверка на конец строки
+	{
+		return NULL;
+	}
+	if (TempString.length() > 1) // проверка на длину строки
+	{
+		FileInput.get();
+		getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
+		return NULL;
+	}
+	if (!isdigit(int(unsigned char(TempString.front())))) // проверка на ввод цифры
+	{
+		FileInput.get();
+		getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
+		return NULL;
+	}
+	int State = stoi(TempString);
 
-	fin >> temp;
-	if (temp == "\0") // проверка на конец строки
+	getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
+
+	FileInput >> TempString;
+	if (TempString == "\0") // проверка на конец строки
 	{
 		return NULL;
 	}
-	if (temp.length() != 4) // проверка на длину строки
+	if (TempString.length() != 4) // проверка на длину строки
 	{
-		getline(fin, temp, '\n'); // пропуск оставшихся данных
+		getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 		return NULL;
 	}
-	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
+	for (auto iter = TempString.begin(); iter != TempString.end(); ++iter)
 	{
 		if (!isdigit(int(unsigned char(*iter)))) // проверка на ввод цифры
 		{
-			getline(fin, temp, '\n'); // пропуск оставшихся данных
+			getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 			return NULL;
 		}
 	}
-	language->year_of_development = stoul(temp);
+	Langua->YearOfDevelopment = stoul(TempString);
 
-	fin >> temp;
-	if (temp == "\0") // проверка на конец строки
+	FileInput >> TempString;
+	if (TempString == "\0") // проверка на конец строки
 	{
 		return NULL;
 	}
-	for (auto iter = temp.begin(); iter != temp.end(); ++iter)
+	for (auto iter = TempString.begin(); iter != TempString.end(); ++iter)
 	{
 		if (!isdigit(int(unsigned char(*iter)))) // проверка на ввод цифры
 		{
-			getline(fin, temp, '\n'); // пропуск оставшихся данных
+			getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 			return NULL;
 		}
 	}
-	language->reference = stoull(temp);
+	Langua->Reference = stoull(TempString);
 
-	switch (state)
+	switch (State)
 	{
 	case 1:
-		proc = new Procedural;
-		language->key = Language::lang::PROCEDURAL;
-		proc = (Procedural*)language;
-		if (!Procedural_Input(*proc, fin))
+		Proc = new Procedural;
+		Langua->Key = Language::Lang::PROCEDURAL;
+		Proc = (Procedural*)Langua;
+
+		if (!Procedural_Input(*Proc, FileInput))
 		{
 			return NULL;
 		}
 		else
 		{
-			return language;
+			return Langua;
 		}
 	case 2:
-		oop = new Object_Oriented;
-		language->key = Language::lang::OOP;
-		oop = (Object_Oriented*)language;
-		if (!Object_Oriented_Input(*oop, fin))
+		Oop = new Object_Oriented;
+		Langua->Key = Language::Lang::OOP;
+		Oop = (Object_Oriented*)Langua;
+
+		if (!Object_Oriented_Input(*Oop, FileInput))
 		{
 			return NULL;
 		}
 		else
 		{
-			return language;
+			return Langua;
 		}
 	case 3:
-		func = new Functional;
-		language->key = Language::lang::FUNCTIONAL;
-		func = (Functional*)language;
-		if (!Functional_Input(*func, fin))
+		Func = new Functional;
+		Langua->Key = Language::Lang::FUNCTIONAL;
+		Func = (Functional*)Langua;
+
+		if (!Functional_Input(*Func, FileInput))
 		{
 			return NULL;
 		}
 		else
 		{
-			return language;
+			return Langua;
 		}
 	default:
-		getline(fin, temp, '\n'); // пропуск оставшихся данных
+		getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 		return NULL;
 	}
 }
 
-void Skobina::Language_Output(Language& obj, ofstream& fout)
+
+void Skobina::Language_Output(Language& Obj, ofstream& FileOutput)
 {
-	switch (obj.key)
+	switch (Obj.Key)
 	{
-	case Language::lang::PROCEDURAL:
-		Procedural_Output((Procedural&)obj, fout);
+	case Language::Lang::PROCEDURAL:
+		Procedural_Output((Procedural&)Obj, FileOutput);
 		break;
-	case Language::lang::OOP:
-		Object_Oriented_Output((Object_Oriented&)obj, fout);
+	case Language::Lang::OOP:
+		Object_Oriented_Output((Object_Oriented&)Obj, FileOutput);
 		break;
-	case Language::lang::FUNCTIONAL:
-		Functional_Output((Functional&)obj, fout);
+	case Language::Lang::FUNCTIONAL:
+		Functional_Output((Functional&)Obj, FileOutput);
 		break;
 	default:
-		fout << "Incorrect programming language" << endl;
+		FileOutput << "Incorrect programming language" << endl;
 		return;
 	}
-	fout << "Year of development = " << obj.year_of_development
-		<< ", The number of references of this language on the Internet = " << obj.reference << endl;
+
+	FileOutput << "Year of development = " << Obj.YearOfDevelopment
+		<< ", The number of references of this language on the Internet = " << Obj.Reference << endl;
 }
+
 
 int Skobina::Past_Years(Language& obj)
 {
 	time_t now = time(NULL);
 	tm* localtm = localtime(&now);
-	return 1900 + localtm->tm_year - obj.year_of_development;
+	return 1900 + localtm->tm_year - obj.YearOfDevelopment;
 }
+
 
 bool Skobina::Compare(Language* first, Language* second)
 {

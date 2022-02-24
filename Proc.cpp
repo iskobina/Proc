@@ -1,47 +1,49 @@
 #include "Proc.h"
 #include <string>
 
-bool Skobina::Procedural_Input(Procedural& obj, ifstream& fin)
+bool Skobina::Procedural_Input(Procedural& Obj, ifstream& FileInput)
 {
-	string temp;
-	fin >> temp;
-	if (temp == "\0") // проверка на конец строки
+	string TempString;
+
+	FileInput >> TempString;
+	if (TempString == "\0") // проверка на конец строки
 	{
 		return false;
 	}
-	if (temp.length() > 1) // проверка на длину строки
+	if (TempString.length() > 1) // проверка на длину строки
 	{
 		return false;
 	}
-	if (!isdigit(int(unsigned char(temp.front())))) // проверка на ввод цифры
+	if (!isdigit(int(unsigned char(TempString.front())))) // проверка на ввод цифры
 	{
 		return false;
 	}
 
-	int state = stoi(temp);
+	int State = stoi(TempString);
 
-	getline(fin, temp, '\n'); // пропуск оставшихся данных
+	getline(FileInput, TempString, '\n'); // пропуск оставшихся данных
 
-	if (state > 0)
+	if (State > 0)
 	{
-		obj.abstract_type = true;
+		Obj.AbstractType = true;
 	}
 	else
 	{
-		obj.abstract_type = false;
+		Obj.AbstractType = false;
 	}
 	return true;
 }
 
-void Skobina::Procedural_Output(Procedural& obj, ofstream& fout)
+
+void Skobina::Procedural_Output(Procedural& Obj, ofstream& FileOutput)
 {
-	fout << "It is Procedural programming language: Abstract data types is ";
-	if (obj.abstract_type)
+	FileOutput << "It is Procedural programming language: Abstract data types is ";
+	if (Obj.AbstractType)
 	{
-		fout << "present, ";
+		FileOutput << "present, ";
 	}
 	else
 	{
-		fout << "missing, ";
+		FileOutput << "missing, ";
 	}
 }

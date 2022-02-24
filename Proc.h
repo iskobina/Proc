@@ -9,19 +9,20 @@ namespace Skobina
 {
 	struct Procedural
 	{
-		enum lang
+		enum Lang
 		{
 			PROCEDURAL,
 			OOP,
 			FUNCTIONAL
-		} key;
-		unsigned int year_of_development;
-		unsigned long long int reference;
-		bool abstract_type;
+		} Key;
+
+		unsigned int YearOfDevelopment;
+		unsigned long long int Reference;
+		bool AbstractType;
 	};
 
-	bool Procedural_Input(Procedural& obj, ifstream& fin);
-	void Procedural_Output(Procedural& obj, ofstream& fout);
+	bool Procedural_Input(Procedural& Obj, ifstream& FileInput);
+	void Procedural_Output(Procedural& Obj, ofstream& FileOutput);
 }
 
 #endif

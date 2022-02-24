@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
 		system("pause");
 		return 1;
 	}
+
 	ofstream fout(argv[2]);
 	if (!fout.is_open()) // проверка на доступ к файлу
 	{
@@ -41,7 +42,7 @@ int main(int argc, char* argv[])
 	Sort_List(list); // сортировка списка
 	Linked_List_Output(list, fout); // вывод в файл отсортированного списка
 
-	Only_Procedural(list, fout); // фильтрованный вывод в файл
+	Linked_List_Output_Only_Procedural(list, fout); // фильтрованный вывод в файл
 
 	Clear(list); // вызов деструктора
 	fout << "Empty container." << endl;
