@@ -176,78 +176,78 @@ void Skobina::Linked_List_Output_Only_Procedural(Linked_List& Obj, ofstream& Fil
 }
 
 
-void Skobina::Multi_Method(Linked_List& obj, ofstream& fout)
+void Skobina::Multi_Method(Linked_List& Obj, ofstream& FileOutput)
 {
-	Node* current_first = obj.Head;
-	Node* current_second = current_first->Next;
+	Node* TempNodeFirst = Obj.Head;
+	Node* TempNodeSecond = TempNodeFirst->Next;
 
-	fout << endl << "Multimethod." << endl;
-	for (size_t i = 0; i < obj.SizeLinkedList - 1; i++)
+	FileOutput << endl << "Multimethod." << endl;
+	for (size_t i = 0; i < Obj.SizeLinkedList - 1; i++)
 	{
-		for (size_t j = i + 1; j < obj.SizeLinkedList; j++)
+		for (size_t j = i + 1; j < Obj.SizeLinkedList; j++)
 		{
-			switch (current_first->Langu->Key)
+			switch (TempNodeFirst->Langu->Key)
 			{
 			case Language::Lang::PROCEDURAL:
-				switch (current_second->Langu->Key)
+				switch (TempNodeSecond->Langu->Key)
 				{
 				case Language::Lang::PROCEDURAL:
-					fout << "Procedural and Procedural." << endl;
+					FileOutput << "Procedural and Procedural." << endl;
 					break;
 				case Language::Lang::OOP:
-					fout << "Procedural and OOP." << endl;
+					FileOutput << "Procedural and OOP." << endl;
 					break;
 				case Language::Lang::FUNCTIONAL:
-					fout << "Procedural and Functional." << endl;
+					FileOutput << "Procedural and Functional." << endl;
 					break;
 				default:
-					fout << "Unknown type." << endl;
+					FileOutput << "Unknown type." << endl;
 					break;
 				}
 				break;
 			case Language::Lang::OOP:
-				switch (current_second->Langu->Key)
+				switch (TempNodeSecond->Langu->Key)
 				{
 				case Language::Lang::PROCEDURAL:
-					fout << "OOP and Procedural." << endl;
+					FileOutput << "OOP and Procedural." << endl;
 					break;
 				case Language::Lang::OOP:
-					fout << "OOP and OOP." << endl;
+					FileOutput << "OOP and OOP." << endl;
 					break;
 				case Language::Lang::FUNCTIONAL:
-					fout << "OOP and Functional." << endl;
+					FileOutput << "OOP and Functional." << endl;
 					break;
 				default:
-					fout << "Unknown type." << endl;
+					FileOutput << "Unknown type." << endl;
 					break;
 				}
 				break;
 			case Language::Lang::FUNCTIONAL:
-				switch (current_second->Langu->Key)
+				switch (TempNodeSecond->Langu->Key)
 				{
 				case Language::Lang::PROCEDURAL:
-					fout << "Functional and Procedural." << endl;
+					FileOutput << "Functional and Procedural." << endl;
 					break;
 				case Language::Lang::OOP:
-					fout << "Functional and OOP." << endl;
+					FileOutput << "Functional and OOP." << endl;
 					break;
 				case Language::Lang::FUNCTIONAL:
-					fout << "Functional and Functional." << endl;
+					FileOutput << "Functional and Functional." << endl;
 					break;
 				default:
-					fout << "Unknown type." << endl;
+					FileOutput << "Unknown type." << endl;
 					break;
 				}
 				break;
 			default:
-				fout << "Unknown type." << endl;
+				FileOutput << "Unknown type." << endl;
 				break;
 			}
-			Language_Output(*current_first->Langu, fout);
-			Language_Output(*current_second->Langu, fout);
-			current_second = current_second->Next;
+			Language_Output(*TempNodeFirst->Langu, FileOutput);
+			Language_Output(*TempNodeSecond->Langu, FileOutput);
+			TempNodeSecond = TempNodeSecond->Next;
 		}
-		current_first = current_first->Next;
-		current_second = current_first->Next;
+		TempNodeFirst = TempNodeFirst->Next;
+		TempNodeSecond = TempNodeFirst->Next;
 	}
 }

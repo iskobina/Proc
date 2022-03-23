@@ -30,7 +30,7 @@ namespace Skobina
 
 	void Swap(Linked_List& Obj, Node* First, Node* Second); // вспомогательная функция сортировки списка
 
-	void Multi_Method(Linked_List& obj, ofstream& fout);
+	void Multi_Method(Linked_List& Obj, ofstream& FileOutput);
 }
 
 #endif
