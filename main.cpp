@@ -42,6 +42,8 @@ int main(int argc, char* argv[])
 	Sort_List(list); // сортировка списка
 	Linked_List_Output(list, fout); // вывод в файл отсортированного списка
 
+	Multi_Method(list, fout);
+
 	Linked_List_Output_Only_Procedural(list, fout); // фильтрованный вывод в файл
 
 	Clear(list); // вызов деструктора

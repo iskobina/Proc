@@ -29,6 +29,8 @@ namespace Skobina
 	void Sort_List(Linked_List& Obj); // функция сортировки списка
 
 	void Swap(Linked_List& Obj, Node* First, Node* Second); // вспомогательная функция сортировки списка
+
+	void Multi_Method(Linked_List& obj, ofstream& fout);
 }
 
 #endif
