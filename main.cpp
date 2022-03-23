@@ -17,15 +17,20 @@ int main(int argc, char* argv[])
 	ofstream fout(argv[2]);
 
 	cout << "Start" << endl;
+
 	LinkedList list;
 	Init(list); //конструктор списка
 	LinkedList_Input(list, fin); //заполнение списка
 	fout << "Filled container." << endl;
 	LinkedList_Output(list, fout); //вывели содержимое контейнера
 
+	Multi_Method(list, fout);
+	fout << endl;
+
 	Clear(list); //деструктор списка
 	fout << "Empty container." << endl;
 	LinkedList_Output(list, fout); //вывели, что контейнер пустой
+
 	cout << "Stop" << endl;
 	return 0;
 }
