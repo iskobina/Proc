@@ -1,0 +1,7 @@
+Container contains 3 elements.
+1: It is Procedural programming language: Abstract data types is missing, Year of development = 1000, The number of references of this language on the Internet = 2
+The number of years that have passed since the year the language was created = 1022
+2: It is Object-oriented programming language: Inheritance is multiple, Year of development = 1001, The number of references of this language on the Internet = 3
+The number of years that have passed since the year the language was created = 1021
+3: It is Functional programming language: Support "lazy" calculations is missing, Typification is strict, Year of development = 1002, The number of references of this language on the Internet = 4
+The number of years that have passed since the year the language was created = 1020

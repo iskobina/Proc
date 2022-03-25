@@ -1,0 +1,1 @@
+It is Object-oriented programming language: Inheritance is multiple, 
